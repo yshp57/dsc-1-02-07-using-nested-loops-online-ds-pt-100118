@@ -1,32 +1,91 @@
-# Object Orientation
 
-## Overview
+# Using Nested Loops
 
-We'll introduce the concept of Object Oriented Programming (OOP)
+## Introduction
+In this lab, we will be looking at how to perform nested iteration (or looping). What does this mean exactly? Well, we know that a nested data structure is having one form of data nested inside another. For example, a nested list would be a list that contains another list, or a dictionary that has a key that points to a list.
 
-## Object-Oriented Programming (OOP)
+```python
+# nested lists
+list_of_lists = [[1,2,3], [4,5,6], [3,5,2]]
+dict_nested_list = { 'name': "example", 'colors': ["blue", "green", "yellow", "red"] }
+```
 
-*An object-oriented approach to application development makes programs more intuitive to design, faster to develop, more amenable to modification, and easier to understand.*  
-—[*Object-Oriented Programming with Objective-C*][apple_oop_guide_intro], Apple Inc.
+So, with that example, we can infer that a nested loop would be a loop inside another loop. Sounds exciting, right? Let's take a look at some nested loops.
 
-[apple_oop_guide_intro]: https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/OOP_ObjC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005149-CH1-SW2
+## Introduction
+Introduction goes here
 
-It's natural to wonder, "how can a string of ones and zeroes be referred to as an 'object'?" The use of the word "object" is an abstraction of thought. An "object" in code has no more physical form than does a word in any human language. Sure, words have physical representations: speaking a word causes air to vibrate in a sound wave, ink on a page can be shaped into symbols that represent the word, a meaning can be pointed at or mimed out; but none of these are the word itself. Human language is a system of abstraction: it communicates the *idea* of a thing, but not the thing itself.
+## Objectives
+You will be able to:
+* Combine different types of loops
+* Understand, explain and use nested loops to iterate through nested data structures
 
-![](https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg)  
-Translation: "This is not a pipe." - [*The Treachery of Images*](https://en.wikipedia.org/wiki/The_Treachery_of_Images), [René Magritte](https://en.wikipedia.org/wiki/Ren%C3%A9_Magritte), 1927  
+## Writing A Nested Loop
 
-This image of a pipe is no more a pipe than the word "pipe" is a pipe; in the same way, a code object named `pipe` is not a pipe, but only another form of representing a pipe.
+Working with a nested data structure is a little confusing at first, but after doing a few times it becomes much less intimidating. The same is true for writing nested loops. They are something that will be somewhat common place in our
+programming future and are important to be comfortable with. 
 
->As humans, we’re constantly faced with myriad facts and impressions that we must make sense of. To do so, we must abstract underlying structure away from surface details and discover the fundamental relations at work. Abstractions reveal causes and effects, expose patterns and frameworks, and separate what’s important from what’s not. Object orientation provides an abstraction of the data on which you operate; moreover, it provides a concrete grouping between the data and the operations you can perform with the data—in effect giving the data behavior.  
->—[*Object-Oriented Programming with Objective-C*](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/OOP_ObjC/Articles/ooOOP.html#//apple_ref/doc/uid/TP40005149-CH8-SW3), Apple Inc.
+Basically what happens with a nested loop is the inner loop runs in its entirety **every** iteration of the ourter loop. Let's take a look at an example before diving too much deeper.
 
-A code object representing a water pipe (instead of a smoking pipe) might contain values for `length`, `diameter`, `material`, and `manufacturer`. The bundling of these individual pieces of information together begins to form a larger whole.
 
-Object-Oriented Programming, however, does more than just bundle up individual pieces of data that represent a "thing" — it also bundles customized functions that can be performed *on* that data. These are called **methods**: behaviors that an object performs upon its internal data and even upon other code objects.
+```python
+outer_numbers = [1,2,3]
+inner_words = ["ONE", "TWO", "THREE"]
+for number in outer_numbers:
+    print(f"this is iteration **{number}** of the OUTER loop")
+    for word in inner_words:
+        print(f"     this is iteration {word} of the INNER loop")
+    print("\n")
+```
 
-An object in code is a thing with all the data and all the logic required to complete a task. Objects are models and metaphors for the problems we solve in code.
+## How Nested Loops Work
 
-Object-oriented programming was born from the trend of making digital lives reflect our real lives. In the 1970's, [Adele Goldberg](https://en.wikipedia.org/wiki/Adele_Goldberg_%28computer_scientist%29) and [Alan Kay](https://en.wikipedia.org/wiki/Alan_Kay) developed an object-oriented language at Xerox PARC called SmallTalk, which was used in the first personal computer.
+Alright, so, what we see happeninig here is that the **inner** loop runs through each of its iterations for each iteration of the **outer** loop. If we break this down even futher, we can think of the block inside of a loop as a single operation. The current iteration only moves on to the next iteration once it has completed the entire operation. 
 
-Python comes with a few types of Objects to get us started, things like `int` for Integer, `str` for String, `list` for List, etc. We call these base types of Objects "Primitives." But what if we wanted to create a new type in our programming universe, a new kind of object for our code? That's what the `class` keyword and object orientation allows us to do.
+So, the operation of the outer loop is to print a string and execute a for loop on the `inner_words` collection. The outer block will do this three times. **BUT** the nested loop has to finish before the next iteration of the outer loop. The nested loop's job is to print its string three times, so that happens for each iteration of the outer loop.
+
+We can nest any kind of loop too.
+
+
+```python
+outer = 0
+inner = 0
+while outer < 3:
+    outer += 1
+    print("outer iteration:", outer)
+    while inner < 3:
+        inner += 1
+        print("    inner iteration:", inner)
+    inner = 0
+    print("\n")
+```
+
+# Using Nested Loops
+
+Seeing how to use nested loops is great and all, but when do we really use them? Well, as we touched on earlier, nested data structures don't simply provide a convenient way to conceptualize nested loops, they provide a clear use case for them too.
+
+Let's say we whave a `list` of `dictionaries` that represent people. People can have attributes that also point to other collections, let's say their pets. So, if we wanted a way to list out the names of all people's pets, this would be a great opportunity to employ a nested loop. Let's take a look at an example.
+
+
+```python
+programmers = [{'name': "rachel", 'favorite_languages': ['Ruby', 'JavaScript', 'SQL', "Java"]},
+               {'name': "daniel", 'favorite_languages': ['JavaScript', 'Elixir', 'Python']},
+               {'name': "greg", 'favorite_languages': ['C#', 'CoffeeScript', 'R']},
+               {'name': "meryl", 'favorite_languages': ['C++', 'PHP', 'Swift']}
+              ]
+```
+
+So, if we wanted to take the above list of `programmers` and dynamically list out everyone's `favorite_languages` we would need to use two separate loops. 
+
+
+```python
+for programmer in programmers:
+    for language in programmer['favorite_languages']:
+        print(language)
+```
+
+It's possible to get this done without a nested loop, but it would require much more code and would not be nearly as efficient or semantic as the above solution. So, in cases where we're dealing with nested data structures, nesting loops becomes very useful.
+
+## Summary
+
+In this lesson, we introduced nested loops. Nested loops are exactly as they sound. A loop inside of another. Nested iteration is helpful when dealing with nested collections in cases where we would like to dynamically access and use nested data contained in these collections. Nested loops can quickly become hard to read and maintain, so, it is important to use them wisely and sparingly.
