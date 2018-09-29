@@ -85,4 +85,4 @@ It's possible to get this done without a nested loop, but it would require much 
 
 ## Summary
 
-In this lesson, we introduced nested loops. Nested loops are exactly as they sound. A loop inside of another. Nested iteration is helpful when dealing with nested collections in cases where we would like to dynamically access and use nested data contained in these collections. Nested loops can quickly become hard to read and maintain, so, it is important to use them wisely and sparingly.
+In this lesson, we introduced nested loops. Nested loops are exactly what they sound like. A loop inside of another. Nested iteration is helpful when dealing with nested collections in cases where we would like to dynamically access and use nested data contained in these collections. Nested loops can quickly become hard to read and maintain, so, it is important to use them wisely and sparingly.
